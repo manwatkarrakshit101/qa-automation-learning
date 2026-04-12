@@ -2,20 +2,13 @@ const { test, expect } = require('@playwright/test');
 const { LoginPage } = require('../pages/loginPage');
 
 test('Login Test', async ({ page }) => {
+  const login = new LoginPage(page);  // ← yeh missing tha!
+  await login.navigate();
+  await login.login('sahil@Visionwaves.com', 'Vision@123');
 
-  await page.goto('https://demo.visionwaves.com/netsingularity/');
+  await page.waitForTimeout(8000);
 
-  await page.getByRole('textbox', { name: 'Username or email' }).fill('sahil@Visionwaves.com');
-  await page.getByRole('textbox', { name: 'Password' }).fill('Vision@123');
-
-  await page.getByRole('button', { name: 'Sign in' }).click();
-
-  await page.waitForTimeout(3000);
-  await page.screenshot({ path: 'after-login.png' });  // screenshot lega
-
-  // ✅ Wait for dashboard / next page
-  await expect(page.getByRole('heading', { name: 'Data Ops' })).toBeVisible();
-  // ✅ Assertion (REAL QA)
+  await expect(page.getByText('Alert dashboard')).toBeVisible({ timeout: 20000 });
   await expect(page).toHaveURL(/netsingularity/);
 
 });

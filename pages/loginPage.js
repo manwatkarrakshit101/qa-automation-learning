@@ -8,7 +8,7 @@ class LoginPage {
   }
 
   async navigate() {
-    await this.page.goto('https://demo.visionwaves.com/netsingularity/');
+    await this.page.goto('https://demo.visionwaves.com/netsingularity/fault-management/dashboards/fm-alert-dashboard');
   }
 
   async login(username, password) {

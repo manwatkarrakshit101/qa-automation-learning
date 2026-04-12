@@ -1,12 +1,11 @@
 class HomePage {
   constructor(page) {
     this.page = page;
-
     this.loginBtn = 'text=Login';
   }
 
   async navigate() {
-    await this.page.goto('https://demo.visionwaves.com/netsingularity/');
+    await this.page.goto('https://demo.visionwaves.com/netsingularity/fault-management/dashboards/fm-alert-dashboard');
   }
 
   async getTitle() {
